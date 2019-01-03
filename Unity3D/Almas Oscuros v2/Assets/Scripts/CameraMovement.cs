@@ -9,11 +9,18 @@ public class CameraMovement : MonoBehaviour {
     private Vector3 currentRot, tempRot;
 
     private Transform locTarget;
+    private Vector3 adjTarget;
+    private float adjVal = .4f;
     public LayerMask elm,glm;
     public float maxRad = 8f;
 
+    void Start() {
+        locTarget = camTarget;
+    }
+
 	void Update () {
-        this.transform.position = Vector3.Lerp(this.transform.position, camTarget.position, smoothValue);
+        adjTarget = Vector3.Lerp(camTarget.position, locTarget.position, adjVal);
+        this.transform.position = Vector3.Lerp(this.transform.position, adjTarget, smoothValue);
         RotateCamera();
         if (Input.GetButtonDown("Fire1")) {
             StartCoroutine(FindTarget());
@@ -54,13 +61,13 @@ public class CameraMovement : MonoBehaviour {
                     print("but there's somenthing in the way!");
                 } else {
                     print(hit.collider + " enemy is visible");
+                    locTarget = hit.transform;
                     break;
                 }
             }
             rad = rad + 1f;
             yield return null;
         }
-
         yield return null;
     }
 }
