@@ -12,7 +12,9 @@ public class CameraMovement : MonoBehaviour {
     private Vector3 adjTarget;
     private float adjVal = .4f;
     public LayerMask elm,glm;
-    public float maxRad = 8f;
+    public float maxRad = 10f;
+
+    private bool canFlick = false;
 
     void Start() {
         locTarget = camTarget;
@@ -24,6 +26,9 @@ public class CameraMovement : MonoBehaviour {
         RotateCamera();
         if (Input.GetButtonDown("Fire1")) {
             StartCoroutine(FindTarget());
+        }
+        if (canFlick && Mathf.Abs(Input.GetAxis("Mouse X")) > .02) {
+            StartCoroutine(FlickCheck());
         }
     }
 
@@ -54,16 +59,13 @@ public class CameraMovement : MonoBehaviour {
         float rad = .5f;
 
         if (locTarget == camTarget) {
-            print("Target Aquired!");
             while (rad < maxRad) {
                 if (Physics.SphereCast(camera.position, rad, camera.forward, out hit, 100.0f, elm)) {
-                    print("enemy found");
                     RaycastHit grndHit;
                     if (Physics.Linecast(camera.position, hit.transform.position, out grndHit, glm)) {
-                        print("but there's somenthing in the way!");
                     } else {
-                        print(hit.collider + " enemy is visible");
                         locTarget = hit.transform;
+                        canFlick = true;
                         break;
                     }
                 }
@@ -74,6 +76,25 @@ public class CameraMovement : MonoBehaviour {
             locTarget = camTarget;
             print("Target Lost");
             yield return null;
+            canFlick = false;
         }
+    }
+
+    IEnumerator FlickCheck() {
+        canFlick = false;
+        float timer = 0f;
+        if (Input.GetAxis("Mouse X") > 0) {
+            print("right");
+        } else {
+            print("left");
+        }
+        while (Mathf.Abs(Input.GetAxis("Mouse X")) > .02f) {
+            yield return null;
+            timer += Time.deltaTime;
+        }
+        if (timer < .2f) {
+            print("Flick");
+        }
+        canFlick = true;
     }
 }
