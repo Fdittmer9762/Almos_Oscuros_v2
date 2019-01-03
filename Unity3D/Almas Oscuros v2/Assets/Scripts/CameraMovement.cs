@@ -10,7 +10,6 @@ public class CameraMovement : MonoBehaviour {
 
 	void Update () {
         this.transform.position = Vector3.Lerp(this.transform.position, camTarget.position, smoothValue);
-
         RotateCamera();
     }
 
