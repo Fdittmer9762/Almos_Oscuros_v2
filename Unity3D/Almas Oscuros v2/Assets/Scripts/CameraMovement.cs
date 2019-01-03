@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour {
 
 	void Update () {
         this.transform.position = Vector3.Lerp(this.transform.position, camTarget.position, smoothValue);
+
         RotateCamera();
     }
 
@@ -18,9 +19,18 @@ public class CameraMovement : MonoBehaviour {
         currentRot.z = 0;
         transform.rotation = Quaternion.Euler(currentRot);
 
-        tempRot.y = -Input.GetAxis("Mouse X");
-        tempRot.x = Input.GetAxis("Mouse Y");
+        if (Mathf.Abs(Input.GetAxis("Mouse X")) > .01) {
+            tempRot.y = -Input.GetAxis("Mouse X");
+        } else {
+            tempRot.y = 0;
+        }
+        if (Mathf.Abs(Input.GetAxis("Mouse Y")) > .01) {
+            tempRot.x = Input.GetAxis("Mouse Y");
+        } else {
+            tempRot.x = 0;
+        }
         tempRot.z = 0;
+
         transform.Rotate(tempRot * Time.deltaTime * lookSensitivity);
     }
 }
