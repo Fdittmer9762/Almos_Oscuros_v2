@@ -18,12 +18,12 @@ public class CameraMovement : MonoBehaviour {
         currentRot.z = 0;
         transform.rotation = Quaternion.Euler(currentRot);
 
-        if (Mathf.Abs(Input.GetAxis("Mouse X")) > .01) {
+        if (Mathf.Abs(Input.GetAxis("Mouse X")) > .02f) {
             tempRot.y = -Input.GetAxis("Mouse X");
         } else {
             tempRot.y = 0;
         }
-        if (Mathf.Abs(Input.GetAxis("Mouse Y")) > .01) {
+        if (Mathf.Abs(Input.GetAxis("Mouse Y")) > .02f) {
             tempRot.x = Input.GetAxis("Mouse Y");
         } else {
             tempRot.x = 0;
