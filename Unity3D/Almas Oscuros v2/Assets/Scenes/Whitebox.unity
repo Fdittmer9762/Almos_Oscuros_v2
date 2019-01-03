@@ -1106,6 +1106,10 @@ MonoBehaviour:
   smoothValue: 0.1
   lookSensitivity: 720
   camTarget: {fileID: 140830380}
+  lm:
+    serializedVersion: 2
+    m_Bits: 1
+  camera: {fileID: 534669905}
 --- !u!1 &1937243421
 GameObject:
   m_ObjectHideFlags: 0
