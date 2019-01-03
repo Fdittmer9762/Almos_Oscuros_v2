@@ -29,9 +29,10 @@ public class CCAnim : MonoBehaviour {
     {
         lookTarget.x = TempPos.x;
         lookTarget.z = TempPos.z;
-        if (Vector3.Distance(Vector3.zero, lookTarget) > .2f)
+        Anim.SetFloat("Turn Angle", Quaternion.Angle(this.transform.rotation, Quaternion.LookRotation(lookTarget, Vector3.up)));
+        if (Vector3.Distance(Vector3.zero, lookTarget) > .1f)
         {
-            this.transform.rotation = Quaternion.LookRotation(lookTarget, Vector3.up);
+            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(lookTarget, Vector3.up), .05f);
         }
     }
 

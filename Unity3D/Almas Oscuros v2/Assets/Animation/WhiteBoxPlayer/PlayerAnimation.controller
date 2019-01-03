@@ -22,7 +22,7 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Temp Z
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: -1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -34,6 +34,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Grounded
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Turn Angle
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -51,6 +57,19 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!114 &114019729650282338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fa62a9ec347485db66ce9d3431bba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimParam: Temp Y
+  value: -1
 --- !u!114 &114148603774562382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FloatParam01: Temp X
-  FloatParam02: Temp Y
+  FloatParam02: Temp Z
   SetParam: Speed
 --- !u!114 &114208758942392528
 MonoBehaviour:
@@ -118,6 +137,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputString: Horizontal
   AnimParam: Temp X
+--- !u!114 &114824933647747754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fa62a9ec347485db66ce9d3431bba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimParam: Temp Y
+  value: -1
 --- !u!114 &114862728998285304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,7 +200,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Temp X
     m_Mirror: 0
-  m_BlendParameter: Temp X
+  m_BlendParameter: Speed
   m_BlendParameterY: Temp X
   m_MinThreshold: 0
   m_MaxThreshold: 1
@@ -238,6 +270,7 @@ AnimatorState:
   - {fileID: 114780968625856110}
   - {fileID: 114862728998285304}
   - {fileID: 114422939830863176}
+  - {fileID: 114019729650282338}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -267,6 +300,7 @@ AnimatorState:
   - {fileID: 114208758942392528}
   - {fileID: 114148603774562382}
   - {fileID: 114204253828118170}
+  - {fileID: 114824933647747754}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
