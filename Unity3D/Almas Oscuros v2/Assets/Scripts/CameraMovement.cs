@@ -50,24 +50,30 @@ public class CameraMovement : MonoBehaviour {
     IEnumerator FindTarget()
     {//Issues with raycasting
         RaycastHit hit;
-        //if (Physics.Raycast(camera.position, camera.forward, out hit, 100.0f))
-        bool found = false;
+
         float rad = .5f;
-        while (rad < maxRad) {
-            if (Physics.SphereCast(camera.position, rad, camera.forward, out hit, 100.0f, elm)) {
-                print("enemy found");
-                RaycastHit grndHit;
-                if (Physics.Linecast(camera.position, hit.transform.position, out grndHit, glm)) {
-                    print("but there's somenthing in the way!");
-                } else {
-                    print(hit.collider + " enemy is visible");
-                    locTarget = hit.transform;
-                    break;
+
+        if (locTarget == camTarget) {
+            print("Target Aquired!");
+            while (rad < maxRad) {
+                if (Physics.SphereCast(camera.position, rad, camera.forward, out hit, 100.0f, elm)) {
+                    print("enemy found");
+                    RaycastHit grndHit;
+                    if (Physics.Linecast(camera.position, hit.transform.position, out grndHit, glm)) {
+                        print("but there's somenthing in the way!");
+                    } else {
+                        print(hit.collider + " enemy is visible");
+                        locTarget = hit.transform;
+                        break;
+                    }
                 }
+                rad = rad + 1f;
+                yield return null;
             }
-            rad = rad + 1f;
+        } else {
+            locTarget = camTarget;
+            print("Target Lost");
             yield return null;
         }
-        yield return null;
     }
 }
