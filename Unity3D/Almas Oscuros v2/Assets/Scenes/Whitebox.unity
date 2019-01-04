@@ -1405,6 +1405,7 @@ MonoBehaviour:
   lookSensitivity: 720
   camTarget: {fileID: 140830380}
   camera: {fileID: 534669905}
+  camOffset: {x: 0, y: 0.735, z: -5}
   elm:
     serializedVersion: 2
     m_Bits: 1024

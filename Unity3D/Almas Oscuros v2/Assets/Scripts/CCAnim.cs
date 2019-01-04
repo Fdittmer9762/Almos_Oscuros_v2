@@ -23,7 +23,7 @@ public class CCAnim : MonoBehaviour {
     void Update() {
         GroundedCheck();
         MoveCharacter();
-        //RotateCharacter();
+        RotateCharacter();
     }
 
     public void RotateCharacter()
@@ -43,7 +43,6 @@ public class CCAnim : MonoBehaviour {
         TempPos = camTransform.TransformDirection(TempPos);
         TempPos.y = Anim.GetFloat("Temp Y");
         CC.Move(TempPos * Time.deltaTime * playerSpeed);
-        RotateCharacter();
     }
 
     void GroundedCheck() {

@@ -7,10 +7,11 @@ public class CameraMovement : MonoBehaviour {
     public float smoothValue, lookSensitivity;
     public Transform camTarget, camera;
     private Vector3 currentRot, tempRot;
+    public Vector3 camOffset;
 
     private Transform locTarget;
     private Vector3 adjTarget;
-    private float adjVal = .4f;
+    private float adjVal = .2f;
     public LayerMask elm,glm;
     public float maxRad = 10f;
 
