@@ -15,6 +15,7 @@ public class CameraMovement : MonoBehaviour {
     public LayerMask elm,glm;
     public float maxRad = 10f;
 
+    public float camAngle, prevAngle, angDir = 5, anglMult;
     private bool canFlick = false;
 
     void Start() {
@@ -50,7 +51,28 @@ public class CameraMovement : MonoBehaviour {
         }
         tempRot.z = 0;
 
+        if(locTarget != camTarget)
+        {
+            RotateClamp();
+        }
+
         transform.Rotate(tempRot * Time.deltaTime * lookSensitivity);
+    }
+
+    void RotateClamp() {
+        prevAngle = camAngle;
+        camAngle = Vector3.Angle(locTarget.position - camTarget.position, camera.position - camTarget.position);
+        if (camAngle < 155f) {
+            if (camAngle < prevAngle) {
+                anglMult = .05f;
+                angDir *= -1f;
+                print("rev : " + angDir);
+            }
+            anglMult += .05f;
+            tempRot.y = Mathf.Lerp(tempRot.y, (tempRot.y += (1 / camAngle) * angDir), anglMult);
+        }else {
+            anglMult = .05f;
+        }
     }
 
     IEnumerator FindTarget()
