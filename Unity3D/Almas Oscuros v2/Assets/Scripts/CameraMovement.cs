@@ -75,7 +75,7 @@ public class CameraMovement : MonoBehaviour {
     }
 
     IEnumerator FindTarget()
-    {//Issues with raycasting
+    {
         RaycastHit hit;
 
         float rad = .5f;
