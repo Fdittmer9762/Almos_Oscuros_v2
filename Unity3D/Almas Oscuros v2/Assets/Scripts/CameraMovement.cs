@@ -15,7 +15,9 @@ public class CameraMovement : MonoBehaviour {
     public LayerMask elm,glm;
     public float maxRad = 10f;
 
-    public float camAngle, prevAngle, angDir = 5, anglMult;
+    public float clampAngle;
+    public float camAngle;
+    private Vector3 clmpA, clmpB;
     private bool canFlick = false;
 
     void Start() {
@@ -60,18 +62,15 @@ public class CameraMovement : MonoBehaviour {
     }
 
     void RotateClamp() {
-        prevAngle = camAngle;
-        camAngle = Vector3.Angle(locTarget.position - camTarget.position, camera.position - camTarget.position);
-        if (camAngle < 155f) {
-            if (camAngle < prevAngle) {
-                anglMult = .05f;
-                angDir *= -1f;
-                print("rev : " + angDir);
-            }
-            anglMult += .05f;
-            tempRot.y = Mathf.Lerp(tempRot.y, (tempRot.y += (1 / camAngle) * angDir), anglMult);
-        }else {
-            anglMult = .05f;
+        clmpA.x = locTarget.position.x - camTarget.position.x;
+        clmpA.z = locTarget.position.z - camTarget.position.z;
+        clmpB.x = camera.position.x - camTarget.position.x;
+        clmpB.z = camera.position.z - camTarget.position.z;
+
+        camAngle = Vector3.SignedAngle(clmpA, clmpB, Vector3.up);
+
+        if (Mathf.Abs(camAngle) < clampAngle) {
+            tempRot.y = Mathf.Lerp(tempRot.y, (tempRot.y += (20 / camAngle)), .2f);
         }
     }
 

@@ -1413,10 +1413,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   maxRad: 8
+  clampAngle: 160
   camAngle: 0
-  prevAngle: 0
-  angDir: 10
-  anglMult: 0
 --- !u!1 &1937243421
 GameObject:
   m_ObjectHideFlags: 0
