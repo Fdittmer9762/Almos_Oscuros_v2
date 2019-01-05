@@ -17,13 +17,11 @@ public class PressOrHoldTrigger : StateMachineBehaviour
             timer += Time.deltaTime;
             if (timer > holdTime) {
                 animator.SetTrigger(holdTrigger);
-                Debug.Log("Holding" + timer);
                 timer = 0f;
             }
         }
         else if (Input.GetButtonUp(inputButton) && timer < holdTime) {
             animator.SetTrigger(pressTrigger);
-            Debug.Log("Pressing" + timer);
             timer = 0f;
         }
     }
