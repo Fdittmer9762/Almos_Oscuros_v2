@@ -17,9 +17,9 @@ TagManager:
   - Player
   - Enemy
   - Ground
-  - PRay
-  - ERay
-  - 
+  - DamPlayer
+  - DamEnemy
+  - Damage
   - 
   - 
   - 
