@@ -70,7 +70,7 @@ public class CameraMovement : MonoBehaviour {
         camAngle = Vector3.SignedAngle(clmpA, clmpB, Vector3.up);
 
         if (Mathf.Abs(camAngle) < clampAngle) {
-            tempRot.y = Mathf.Lerp(tempRot.y, (tempRot.y += (20 / camAngle)), .2f);
+            tempRot.y = Mathf.Lerp(tempRot.y, (tempRot.y += (40 / camAngle)), .2f);
         }
     }
 
